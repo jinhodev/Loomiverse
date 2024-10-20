@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'dart:math'; // 수학적 계산을 위한 패키지
+import 'package:flutter_app/widgets/buildSmallCircle.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -62,9 +65,10 @@ class _HomeScreenState extends State<HomeScreen> {
             Flexible(
               flex: 4,
               fit: FlexFit.tight,
-              child: Container(
+              child: Stack(
                 alignment: Alignment.center,
-                child: Container(
+                children: [
+                  Container(
                     width: 120,
                     height: 120,
                     decoration: const BoxDecoration(
@@ -78,33 +82,69 @@ class _HomeScreenState extends State<HomeScreen> {
                             fontWeight: FontWeight.bold,
                           ),
                           textAlign: TextAlign.center),
-                    )),
+                    ),
+                  ),
+                  for (int i = 0; i < 60; i++)
+                    SmallCircle(
+                      index: i, // 각 원의 인덱스
+                      totalCircles: 60, // 전체 원의 개수
+                      radius: 100, // 중앙 원으로부터의 거리
+                    ),
+                ],
               ),
             ),
             Flexible(
               flex: 4,
               fit: FlexFit.tight,
               child: Container(
-                  decoration: const BoxDecoration(
-                    color: Color.fromARGB(255, 234, 98, 98),
-                  ),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: const Text('Enabled'),
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      shape: const CircleBorder(),
+                      minimumSize: const Size(50, 50),
+                      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+                    ),
+                    child: const Text(
+                      '-5',
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 234, 98, 98),
                       ),
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: const Text('Enabled'),
+                    ),
+                  ),
+                  const SizedBox(width: 11), // 폭을 지정합니다.
+                  IconButton(
+                    icon: const Icon(
+                      Icons.play_arrow,
+                      size: 45.0, // 아이콘 크기
+                      color: Color.fromARGB(255, 234, 98, 98), // 아이콘 색상
+                    ),
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      shape: const CircleBorder(),
+                      minimumSize: const Size(80, 80),
+                      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+                    ),
+                  ),
+                  const SizedBox(width: 11), // 폭을 지정합니다.ㄴ
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      shape: const CircleBorder(),
+                      minimumSize: const Size(50, 50),
+                      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+                    ),
+                    child: const Text(
+                      '+5',
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 234, 98, 98),
                       ),
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: const Text('Enabled'),
-                      ),
-                    ],
-                  )),
+                    ),
+                  ),
+                ],
+              )),
             ),
           ]),
     );
