@@ -5,12 +5,14 @@ class SmallCircle extends StatelessWidget {
   final int index;
   final int totalCircles;
   final double radius;
+  final Color color; // 추가된 color 매개변수
 
   const SmallCircle({
     Key? key,
     required this.index,
     required this.totalCircles,
     required this.radius,
+    required this.color, // color 매개변수를 추가
   }) : super(key: key);
 
   @override
@@ -27,9 +29,9 @@ class SmallCircle extends StatelessWidget {
       child: Container(
         width: size,
         height: size,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: Colors.white,
+          color: color, // 동적으로 색상 적용
         ),
       ),
     );

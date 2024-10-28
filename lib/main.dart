@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter_app/screens/home_screen.dart';
+import 'package:flutter_app/utilities/timer.dart';
 
-void main() => runApp(const MyApp());
+void main() => runApp(
+      ChangeNotifierProvider(
+        create: (_) => TimerLogic(),
+        child: const MyApp(),
+      ),
+    );
 
-// stl 입력 -> stateless 선택 -> 클래스 이름(MyApp) 추가
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -20,6 +26,6 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: const HomeScreen(),
-    ); // ThemeData <- closing label // MaterialApp
+    );
   }
 }
